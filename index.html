@@ -554,7 +554,11 @@
       </div>
     </div>
 
-    <form class="book-form" id="bookForm">
+    <form class="book-form" id="bookForm" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="booking">
+      <p style="position:absolute; left:-9999px;" aria-hidden="true">
+        <label>Leave this field empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+      </p>
       <div class="field-row">
         <div class="field">
           <label for="name">Full name</label>
@@ -585,8 +589,8 @@
         <textarea id="notes" name="notes" rows="3" placeholder="Hair length, texture, extensions you're bringing…"></textarea>
       </div>
       <button class="btn" type="submit">Request appointment</button>
-      <p class="form-note">This opens your email app with a pre-filled message to us — just hit send.</p>
-      <div class="success" id="successMsg" role="status">Your email app should now be open with the request ready to send. If nothing opened, email us directly at <a href="mailto:emeraudeemepro@gmail.com" style="color:inherit; text-decoration:underline;">emeraudeemepro@gmail.com</a>.</div>
+      <p class="form-note">We'll get your request by email and confirm your slot within a day.</p>
+      <div class="success" id="successMsg" role="status">Thanks — your request is in. We'll confirm your slot by email within a day.</div>
     </form>
   </div>
 </section>
@@ -604,30 +608,52 @@
 <script>
   var BOOKING_EMAIL = "emeraudeemepro@gmail.com";
 
+  function encodeFormData(data) {
+    return Object.keys(data)
+      .map(function(key){ return encodeURIComponent(key) + "=" + encodeURIComponent(data[key]); })
+      .join("&");
+  }
+
   document.getElementById('bookForm').addEventListener('submit', function(e){
     e.preventDefault();
+    var form = e.target;
     var name = document.getElementById('name').value.trim();
     var phone = document.getElementById('phone').value.trim();
     var style = document.getElementById('style').value;
     var date = document.getElementById('date').value;
     var notes = document.getElementById('notes').value.trim();
 
-    var subject = "Booking request — " + style + (name ? " for " + name : "");
-    var bodyLines = [
-      "Name: " + name,
-      "Phone: " + phone,
-      "Style requested: " + style,
-      "Preferred date: " + (date || "Not specified"),
-      "",
-      "Notes:",
-      notes || "(none)"
-    ];
-    var mailto = "mailto:" + BOOKING_EMAIL
-      + "?subject=" + encodeURIComponent(subject)
-      + "&body=" + encodeURIComponent(bodyLines.join("\n"));
-
-    window.location.href = mailto;
-    document.getElementById('successMsg').classList.add('show');
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encodeFormData({
+        "form-name": "booking",
+        name: name,
+        phone: phone,
+        style: style,
+        date: date,
+        notes: notes
+      })
+    }).then(function(res){
+      if (!res.ok) throw new Error("submit failed");
+      document.getElementById('successMsg').classList.add('show');
+      form.reset();
+    }).catch(function(){
+      var subject = "Booking request — " + style + (name ? " for " + name : "");
+      var bodyLines = [
+        "Name: " + name,
+        "Phone: " + phone,
+        "Style requested: " + style,
+        "Preferred date: " + (date || "Not specified"),
+        "",
+        "Notes:",
+        notes || "(none)"
+      ];
+      window.location.href = "mailto:" + BOOKING_EMAIL
+        + "?subject=" + encodeURIComponent(subject)
+        + "&body=" + encodeURIComponent(bodyLines.join("\n"));
+      document.getElementById('successMsg').classList.add('show');
+    });
   });
 
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
