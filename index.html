@@ -339,6 +339,41 @@
   table.price td.price{color:var(--accent-strong); font-weight:600;}
   .price-note{color:var(--ink-soft); font-size:0.86rem; margin-top:14px;}
 
+  @media (max-width:640px){
+    .price-scroll{overflow-x:visible; border:none; border-radius:0;}
+    table.price{min-width:0; display:block;}
+    table.price thead{display:none;}
+    table.price tbody{display:block;}
+    table.price tr{
+      display:block;
+      background:var(--surface);
+      border:1px solid var(--surface-line);
+      border-radius:14px;
+      padding:16px 18px;
+      margin-bottom:12px;
+    }
+    table.price td{
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      gap:12px;
+      padding:6px 0;
+      border-bottom:none;
+    }
+    table.price td.svc{
+      padding-bottom:10px;
+      margin-bottom:6px;
+      border-bottom:1px solid var(--surface-line);
+      font-size:1.02rem;
+    }
+    table.price td.dur::before, table.price td.price::before{
+      content:attr(data-label);
+      font-weight:500;
+      color:var(--ink-soft);
+      font-size:0.82rem;
+    }
+  }
+
   .book{
     background:var(--plum);
     color:var(--plum-ink);
@@ -567,12 +602,12 @@
           <tr><th>Service</th><th>Duration</th><th>Price</th></tr>
         </thead>
         <tbody>
-          <tr><td class="svc">Knotless braids, medium</td><td class="dur">4–5 hrs</td><td class="price">from €120</td></tr>
-          <tr><td class="svc">Box braids, jumbo</td><td class="dur">3 hrs</td><td class="price">from €90</td></tr>
-          <tr><td class="svc">Boho curly braids</td><td class="dur">4–5 hrs</td><td class="price">from €130</td></tr>
-          <tr><td class="svc">Cornrows, feed-in (2–6 rows)</td><td class="dur">1.5 hrs</td><td class="price">from €50</td></tr>
-          <tr><td class="svc">Silk press &amp; trim</td><td class="dur">1.5 hrs</td><td class="price">from €60</td></tr>
-          <tr><td class="svc">Kids braids, under 12</td><td class="dur">1.5 hrs</td><td class="price">from €40</td></tr>
+          <tr><td class="svc">Knotless braids, medium</td><td class="dur" data-label="Duration">4–5 hrs</td><td class="price" data-label="Price">from €120</td></tr>
+          <tr><td class="svc">Box braids, jumbo</td><td class="dur" data-label="Duration">3 hrs</td><td class="price" data-label="Price">from €90</td></tr>
+          <tr><td class="svc">Boho curly braids</td><td class="dur" data-label="Duration">4–5 hrs</td><td class="price" data-label="Price">from €130</td></tr>
+          <tr><td class="svc">Cornrows, feed-in (2–6 rows)</td><td class="dur" data-label="Duration">1.5 hrs</td><td class="price" data-label="Price">from €50</td></tr>
+          <tr><td class="svc">Silk press &amp; trim</td><td class="dur" data-label="Duration">1.5 hrs</td><td class="price" data-label="Price">from €60</td></tr>
+          <tr><td class="svc">Kids braids, under 12</td><td class="dur" data-label="Duration">1.5 hrs</td><td class="price" data-label="Price">from €40</td></tr>
         </tbody>
       </table>
     </div>
