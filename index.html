@@ -393,38 +393,26 @@
   .info-row h4{margin:0 0 2px; font-size:0.95rem; font-weight:600;}
   .info-row p{margin:0; color:var(--plum-soft); font-size:0.92rem;}
 
-  form.book-form{
+  .book-cal{
     background:color-mix(in srgb, var(--plum-ink) 6%, transparent);
     border:1px solid color-mix(in srgb, var(--plum-ink) 20%, transparent);
     border-radius:20px;
-    padding:clamp(22px,3vw,32px);
-    display:grid;
-    gap:16px;
+    padding:clamp(10px,1.5vw,16px);
+    min-height:100px;
   }
-  .field{display:grid; gap:6px;}
-  .field label{font-size:0.82rem; color:var(--plum-soft);}
-  .field input, .field select, .field textarea{
-    font:inherit;
-    padding:11px 14px;
-    border-radius:10px;
-    border:1px solid color-mix(in srgb, var(--plum-ink) 24%, transparent);
-    background:color-mix(in srgb, var(--plum-ink) 8%, transparent);
-    color:var(--plum-ink);
+  .book-cal-frame{
+    width:100%;
+    height:100%;
+    min-height:640px;
+    overflow:hidden;
+    border-radius:14px;
   }
-  .field input::placeholder, .field textarea::placeholder{color:color-mix(in srgb, var(--plum-ink) 45%, transparent);}
-  .field-row{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
-  @media (max-width:480px){ .field-row{grid-template-columns:1fr;} }
-  form.book-form .btn{justify-self:start; margin-top:4px;}
-  .form-note{font-size:0.82rem; color:var(--plum-soft); margin:0;}
-  .success{
-    display:none;
-    padding:14px 16px;
-    border-radius:12px;
-    background:color-mix(in srgb, var(--accent-on-plum) 18%, transparent);
-    border:1px solid color-mix(in srgb, var(--accent-on-plum) 40%, transparent);
-    font-size:0.92rem;
+  .book-cal-fallback{
+    padding:12px 6px 4px;
+    font-size:0.86rem;
+    color:var(--plum-soft);
   }
-  .success.show{display:block;}
+  .book-cal-fallback a{color:var(--accent-on-plum); font-weight:600;}
 
   footer{
     padding:32px 0 40px;
@@ -620,8 +608,8 @@
     <div data-reveal>
       <div class="section-head">
         <span class="eyebrow">Book a slot</span>
-        <h2>Tell us what you're after</h2>
-        <p>Fill in the form — it opens your email app with everything pre-filled, ready to send us.</p>
+        <h2>Pick a real available time</h2>
+        <p>Choose your style and a slot straight from our live calendar — you'll get an instant confirmation by email.</p>
       </div>
       <div class="book-info">
         <div class="info-row">
@@ -634,49 +622,17 @@
         </div>
         <div class="info-row">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
-          <div><h4>Response time</h4><p>Within one business day, by email or phone</p></div>
+          <div><h4>Confirmation</h4><p>Instant, by email — with a reminder before your appointment</p></div>
         </div>
       </div>
     </div>
 
-    <form class="book-form" id="bookForm" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="booking">
-      <p style="position:absolute; left:-9999px;" aria-hidden="true">
-        <label>Leave this field empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+    <div class="book-cal" data-reveal>
+      <div id="calBooking" class="book-cal-frame"></div>
+      <p class="book-cal-fallback">Calendar not loading? Book directly at
+        <a id="calFallbackLink" href="https://cal.com/natte-studio" target="_blank" rel="noopener">cal.com/natte-studio</a>.
       </p>
-      <div class="field-row">
-        <div class="field">
-          <label for="name">Full name</label>
-          <input id="name" name="name" type="text" placeholder="Your name" required>
-        </div>
-        <div class="field">
-          <label for="phone">Phone</label>
-          <input id="phone" name="phone" type="tel" placeholder="06 12 34 56 78" required>
-        </div>
-      </div>
-      <div class="field">
-        <label for="style">Style you'd like</label>
-        <select id="style" name="style">
-          <option>Knotless Braids</option>
-          <option>Box Braids</option>
-          <option>Boho Curly Braids</option>
-          <option>Cornrow Updo</option>
-          <option>Silk Press &amp; Trim</option>
-          <option>Not sure yet</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="date">Preferred date</label>
-        <input id="date" name="date" type="date">
-      </div>
-      <div class="field">
-        <label for="notes">Anything we should know</label>
-        <textarea id="notes" name="notes" rows="3" placeholder="Hair length, texture, extensions you're bringing…"></textarea>
-      </div>
-      <button class="btn" type="submit">Request appointment</button>
-      <p class="form-note">We'll get your request by email and confirm your slot within a day.</p>
-      <div class="success" id="successMsg" role="status">Thanks — your request is in. We'll confirm your slot by email within a day.</div>
-    </form>
+    </div>
   </div>
 </section>
 
@@ -704,54 +660,53 @@
     });
   });
 
-  var BOOKING_EMAIL = "emeraudeemepro@gmail.com";
+  // --- Cal.com booking widget ---
+  // 1. Create a free account at https://cal.com and set your username (e.g. "natte-studio").
+  // 2. Create an event type (e.g. slug "braids") for appointments.
+  // 3. Update CAL_LINK below to "your-username/your-event-slug" and it goes live automatically.
+  var CAL_LINK = "natte-studio/braids";
+  document.getElementById('calFallbackLink').href = "https://cal.com/" + CAL_LINK;
 
-  function encodeFormData(data) {
-    return Object.keys(data)
-      .map(function(key){ return encodeURIComponent(key) + "=" + encodeURIComponent(data[key]); })
-      .join("&");
-  }
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ["initNamespace", namespace]);
+        } else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
 
-  document.getElementById('bookForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    var form = e.target;
-    var name = document.getElementById('name').value.trim();
-    var phone = document.getElementById('phone').value.trim();
-    var style = document.getElementById('style').value;
-    var date = document.getElementById('date').value;
-    var notes = document.getElementById('notes').value.trim();
-
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encodeFormData({
-        "form-name": "booking",
-        name: name,
-        phone: phone,
-        style: style,
-        date: date,
-        notes: notes
-      })
-    }).then(function(res){
-      if (!res.ok) throw new Error("submit failed");
-      document.getElementById('successMsg').classList.add('show');
-      form.reset();
-    }).catch(function(){
-      var subject = "Booking request — " + style + (name ? " for " + name : "");
-      var bodyLines = [
-        "Name: " + name,
-        "Phone: " + phone,
-        "Style requested: " + style,
-        "Preferred date: " + (date || "Not specified"),
-        "",
-        "Notes:",
-        notes || "(none)"
-      ];
-      window.location.href = "mailto:" + BOOKING_EMAIL
-        + "?subject=" + encodeURIComponent(subject)
-        + "&body=" + encodeURIComponent(bodyLines.join("\n"));
-      document.getElementById('successMsg').classList.add('show');
-    });
+  Cal("init", { origin: "https://cal.com" });
+  Cal("inline", {
+    elementOrSelector: "#calBooking",
+    calLink: CAL_LINK,
+    config: {
+      theme: "dark",
+      layout: "month_view"
+    }
+  });
+  Cal("ui", {
+    theme: "dark",
+    styles: { branding: { brandColor: "#dba750" } },
+    hideEventTypeDetails: false
   });
 
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
