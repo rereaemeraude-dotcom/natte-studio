@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natté Studio — Afro Braids &amp; Curls, Booked Online</title>
+<meta name="description" content="A private afro hair studio specialising in knotless braids, box braids and curly finishes. Check availability and request an appointment online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f5ece1;
+    --surface:#fdf6ee;
+    --surface-line:#e6cfb6;
+    --ink:#2f1c2c;
+    --ink-soft:#7a5d67;
+    --plum:#47203c;
+    --plum-ink:#f4e7db;
+    --plum-soft:#c9a8bb;
+    --accent:#a06a24;
+    --accent-strong:#7c4f19;
+    --accent-on-plum:#e3b356;
+    --focus:#a06a24;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1c1116;
+      --surface:#251720;
+      --surface-line:#3c2530;
+      --ink:#f2e6da;
+      --ink-soft:#c1a0aa;
+      --plum:#150c12;
+      --plum-ink:#f2e6da;
+      --plum-soft:#c9a8bb;
+      --accent:#dba750;
+      --accent-strong:#f0c26a;
+      --accent-on-plum:#e3b356;
+      --focus:#dba750;
+    }
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Work Sans", ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55;
+  }
+
+  h1,h2,h3,.wordmark{
+    font-family:"Fraunces", ui-serif, Georgia, serif;
+    text-wrap:balance;
+    color:var(--ink);
+  }
+
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 clamp(20px,5vw,56px);
+  }
+
+  header.nav{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--surface-line);
+  }
+  .nav-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px clamp(20px,5vw,56px);
+    max-width:1120px;
+    margin:0 auto;
+  }
+  .brand{
+    font-family:"Fraunces", serif;
+    font-weight:600;
+    font-size:1.35rem;
+    letter-spacing:0.01em;
+    text-decoration:none;
+    display:flex;
+    align-items:baseline;
+    gap:6px;
+  }
+  .brand em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--accent);
+  }
+  nav.links{
+    display:flex;
+    gap:clamp(14px,2.5vw,32px);
+    font-size:0.92rem;
+  }
+  nav.links a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    transition:color 0.15s ease;
+  }
+  nav.links a:hover, nav.links a:focus-visible{color:var(--ink);}
+  .nav-cta{
+    display:none;
+  }
+  @media (min-width:720px){
+    .nav-cta{display:inline-flex;}
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 22px;
+    border-radius:999px;
+    background:var(--accent);
+    color:#fffaf2;
+    font-weight:600;
+    font-size:0.92rem;
+    text-decoration:none;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:background 0.15s ease, transform 0.15s ease;
+  }
+  .btn:hover{background:var(--accent-strong);}
+  .btn:active{transform:translateY(1px);}
+  .btn.ghost{
+    background:transparent;
+    color:var(--plum-ink);
+    border-color:color-mix(in srgb, var(--plum-ink) 40%, transparent);
+  }
+  .btn.ghost:hover{background:color-mix(in srgb, var(--plum-ink) 12%, transparent);}
+  :focus-visible{outline:2px solid var(--focus); outline-offset:3px;}
+
+  .hero{
+    position:relative;
+    background:var(--plum);
+    color:var(--plum-ink);
+    overflow:hidden;
+  }
+  .hero .braid-field{
+    position:absolute;
+    inset:0;
+    opacity:0.5;
+  }
+  .hero-inner{
+    position:relative;
+    padding:clamp(64px,10vw,120px) clamp(20px,5vw,56px) clamp(72px,9vw,110px);
+    max-width:1120px;
+    margin:0 auto;
+    display:grid;
+    gap:22px;
+  }
+  .eyebrow{
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:0.76rem;
+    color:var(--accent-on-plum);
+    font-weight:600;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem,6vw,4.6rem);
+    line-height:1.02;
+    margin:0;
+    max-width:14ch;
+    font-weight:500;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--accent-on-plum);
+  }
+  .hero p.lede{
+    max-width:52ch;
+    font-size:1.08rem;
+    color:var(--plum-soft);
+    margin:0;
+  }
+  .hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:8px;
+  }
+  .hero-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:28px;
+    margin-top:36px;
+    padding-top:28px;
+    border-top:1px solid color-mix(in srgb, var(--plum-ink) 22%, transparent);
+    max-width:640px;
+  }
+  .hero-meta div{display:grid; gap:2px;}
+  .hero-meta .num{font-family:"Fraunces", serif; font-size:1.5rem; font-weight:500;}
+  .hero-meta .lbl{font-size:0.78rem; color:var(--plum-soft); text-transform:uppercase; letter-spacing:0.08em;}
+
+  section{padding:clamp(64px,9vw,104px) 0;}
+  .section-head{
+    display:grid;
+    gap:12px;
+    max-width:640px;
+    margin-bottom:clamp(36px,5vw,56px);
+  }
+  .section-head .eyebrow{color:var(--accent-strong);}
+  .section-head h2{
+    font-size:clamp(1.9rem,3.4vw,2.6rem);
+    font-weight:500;
+    margin:0;
+  }
+  .section-head p{color:var(--ink-soft); margin:0; font-size:1.02rem;}
+
+  .styles-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:20px;
+  }
+  .style-card{
+    background:var(--surface);
+    border:1px solid var(--surface-line);
+    border-radius:18px;
+    padding:28px 24px;
+    display:grid;
+    gap:14px;
+  }
+  .style-card .icon{
+    width:52px;height:52px;
+    color:var(--accent);
+  }
+  .style-card h3{font-size:1.15rem; font-weight:600; margin:0;}
+  .style-card p{margin:0; color:var(--ink-soft); font-size:0.94rem;}
+  .style-card .from{
+    font-family:"Fraunces", serif;
+    font-size:0.95rem;
+    color:var(--accent-strong);
+    margin-top:4px;
+  }
+
+  .process{
+    background:var(--surface);
+    border-top:1px solid var(--surface-line);
+    border-bottom:1px solid var(--surface-line);
+  }
+  .process-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:32px;
+  }
+  .process-step{display:grid; gap:10px;}
+  .process-step .step-no{
+    font-family:"Fraunces", serif;
+    font-style:italic;
+    font-size:2.4rem;
+    color:var(--accent);
+    line-height:1;
+  }
+  .process-step h3{font-size:1.08rem; margin:0; font-weight:600;}
+  .process-step p{margin:0; color:var(--ink-soft); font-size:0.94rem;}
+
+  .price-scroll{overflow-x:auto; border:1px solid var(--surface-line); border-radius:18px;}
+  table.price{
+    width:100%;
+    border-collapse:collapse;
+    min-width:520px;
+    background:var(--surface);
+  }
+  table.price th, table.price td{
+    text-align:left;
+    padding:16px 22px;
+    border-bottom:1px solid var(--surface-line);
+    font-size:0.95rem;
+  }
+  table.price th{
+    text-transform:uppercase;
+    letter-spacing:0.07em;
+    font-size:0.74rem;
+    color:var(--ink-soft);
+    font-weight:600;
+  }
+  table.price tr:last-child td{border-bottom:none;}
+  table.price td.svc{font-weight:600;}
+  table.price td.dur, table.price td.price{
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+  }
+  table.price td.price{color:var(--accent-strong); font-weight:600;}
+  .price-note{color:var(--ink-soft); font-size:0.86rem; margin-top:14px;}
+
+  .book{
+    background:var(--plum);
+    color:var(--plum-ink);
+  }
+  .book-grid{
+    display:grid;
+    grid-template-columns:1.05fr 1fr;
+    gap:clamp(32px,6vw,72px);
+    align-items:start;
+  }
+  @media (max-width:860px){ .book-grid{grid-template-columns:1fr;} }
+  .book h2{color:var(--plum-ink);}
+  .book .section-head p{color:var(--plum-soft);}
+  .book-info{display:grid; gap:22px;}
+  .info-row{display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start;}
+  .info-row .icon{width:22px; height:22px; color:var(--accent-on-plum); margin-top:2px;}
+  .info-row h4{margin:0 0 2px; font-size:0.95rem; font-weight:600;}
+  .info-row p{margin:0; color:var(--plum-soft); font-size:0.92rem;}
+
+  form.book-form{
+    background:color-mix(in srgb, var(--plum-ink) 6%, transparent);
+    border:1px solid color-mix(in srgb, var(--plum-ink) 20%, transparent);
+    border-radius:20px;
+    padding:clamp(22px,3vw,32px);
+    display:grid;
+    gap:16px;
+  }
+  .field{display:grid; gap:6px;}
+  .field label{font-size:0.82rem; color:var(--plum-soft);}
+  .field input, .field select, .field textarea{
+    font:inherit;
+    padding:11px 14px;
+    border-radius:10px;
+    border:1px solid color-mix(in srgb, var(--plum-ink) 24%, transparent);
+    background:color-mix(in srgb, var(--plum-ink) 8%, transparent);
+    color:var(--plum-ink);
+  }
+  .field input::placeholder, .field textarea::placeholder{color:color-mix(in srgb, var(--plum-ink) 45%, transparent);}
+  .field-row{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:480px){ .field-row{grid-template-columns:1fr;} }
+  form.book-form .btn{justify-self:start; margin-top:4px;}
+  .form-note{font-size:0.82rem; color:var(--plum-soft); margin:0;}
+  .success{
+    display:none;
+    padding:14px 16px;
+    border-radius:12px;
+    background:color-mix(in srgb, var(--accent-on-plum) 18%, transparent);
+    border:1px solid color-mix(in srgb, var(--accent-on-plum) 40%, transparent);
+    font-size:0.92rem;
+  }
+  .success.show{display:block;}
+
+  footer{
+    padding:32px 0 40px;
+    border-top:1px solid var(--surface-line);
+  }
+  .footer-row{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:16px;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+  }
+  .footer-row a{text-decoration:none; color:var(--ink-soft);}
+  .footer-row a:hover{color:var(--ink);}
+
+  [data-reveal]{
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  [data-reveal].in{opacity:1; transform:none;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-row">
+    <a class="brand" href="#top">NATT<em>É</em> Studio</a>
+    <nav class="links">
+      <a href="#styles">Styles</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#process">How it works</a>
+    </nav>
+    <a class="btn nav-cta" href="#book">Book a slot</a>
+  </div>
+</header>
+
+<div id="top"></div>
+<section class="hero">
+  <svg class="braid-field" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <pattern id="braidTile" width="46" height="46" patternUnits="userSpaceOnUse" patternTransform="rotate(6)">
+        <path d="M-11,23 C0,3 11,43 23,23 C34,3 46,43 57,23" fill="none" stroke="#e3b356" stroke-opacity="0.35" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M-11,23 C0,43 11,3 23,23 C34,43 46,3 57,23" fill="none" stroke="#e3b356" stroke-opacity="0.18" stroke-width="2.4" stroke-linecap="round"/>
+      </pattern>
+      <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#150c12" stop-opacity="0"/>
+        <stop offset="1" stop-color="#150c12" stop-opacity="0.9"/>
+      </linearGradient>
+    </defs>
+    <rect width="400" height="300" fill="url(#braidTile)"/>
+    <rect width="400" height="300" fill="url(#fade)"/>
+  </svg>
+  <div class="hero-inner">
+    <span class="eyebrow">Afro hair studio · Île-de-France</span>
+    <h1>Braids, curls &amp; <em>press</em>,<br>booked in a few taps.</h1>
+    <p class="lede">A private studio specialising in knotless braids, box braids and curly finishes. Tell us the style and the date — we'll confirm your slot and talk through prep beforehand.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#book">Check availability</a>
+      <a class="btn ghost" href="#styles">See signature styles</a>
+    </div>
+    <div class="hero-meta">
+      <div><span class="num">45–90</span><span class="lbl">Minutes prep call</span></div>
+      <div><span class="num">6</span><span class="lbl">Signature services</span></div>
+      <div><span class="num">Tue–Sat</span><span class="lbl">Studio hours</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="styles">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Signature styles</span>
+      <h2>Four ways to wear it this season</h2>
+      <p>Each style is fitted to your hair density and parting before we start — no two installs look the same.</p>
+    </div>
+    <div class="styles-grid">
+
+      <div class="style-card" data-reveal>
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M12 6 C12 16, 24 16, 24 24 C24 32, 12 32, 12 42"/>
+          <path d="M24 6 C24 16, 36 16, 36 24 C36 32, 24 32, 24 42"/>
+          <circle cx="12" cy="6" r="1.6" fill="currentColor"/>
+          <circle cx="24" cy="6" r="1.6" fill="currentColor"/>
+          <circle cx="36" cy="6" r="1.6" fill="currentColor"/>
+        </svg>
+        <h3>Knotless Braids</h3>
+        <p>Feed-in technique for a light, natural root — our most requested install for everyday wear.</p>
+        <span class="from">from €120</span>
+      </div>
+
+      <div class="style-card" data-reveal>
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="8" y="8" width="8" height="8"/>
+          <rect x="20" y="8" width="8" height="8"/>
+          <rect x="32" y="8" width="8" height="8"/>
+          <rect x="8" y="20" width="8" height="8"/>
+          <rect x="20" y="20" width="8" height="8"/>
+          <rect x="32" y="20" width="8" height="8"/>
+          <path d="M10 32 L38 40" stroke-dasharray="0 6.4" />
+        </svg>
+        <h3>Box Braids</h3>
+        <p>Jumbo or medium parting, classic tension and finish — built to hold four to six weeks.</p>
+        <span class="from">from €90</span>
+      </div>
+
+      <div class="style-card" data-reveal>
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M24 4 C34 4 40 12 36 20 C33 26 24 26 24 32 C24 38 32 38 34 44"/>
+          <path d="M24 4 C14 4 8 12 12 20 C15 26 24 26 24 32"/>
+        </svg>
+        <h3>Boho Curly Braids</h3>
+        <p>Braided base with a loose curled crown for a softer, undone finish.</p>
+        <span class="from">from €130</span>
+      </div>
+
+      <div class="style-card" data-reveal>
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M6 30 C6 16, 42 16, 42 30"/>
+          <path d="M12 30 C12 20, 36 20, 36 30"/>
+          <path d="M18 30 C18 24, 30 24, 30 30"/>
+          <path d="M24 30 L24 42"/>
+        </svg>
+        <h3>Cornrow Updo</h3>
+        <p>Sculpted rows swept into a finished updo — sharp for events, gentle on edges.</p>
+        <span class="from">from €70</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="process" class="process">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">How booking works</span>
+      <h2>Three steps, start to chair</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step" data-reveal>
+        <span class="step-no">01</span>
+        <h3>Send your request</h3>
+        <p>Pick a style and a few dates that work. We reply within a day with real availability.</p>
+      </div>
+      <div class="process-step" data-reveal>
+        <span class="step-no">02</span>
+        <h3>Quick prep call</h3>
+        <p>A short call to confirm length, hair type and any extensions you need to bring.</p>
+      </div>
+      <div class="process-step" data-reveal>
+        <span class="step-no">03</span>
+        <h3>Studio appointment</h3>
+        <p>Show up wash-day fresh — we handle parting, install and a finishing touch-up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Pricing</span>
+      <h2>Straightforward, by service</h2>
+      <p>Extensions and hair are not supplied — bring your preferred texture and length.</p>
+    </div>
+    <div class="price-scroll" data-reveal>
+      <table class="price">
+        <thead>
+          <tr><th>Service</th><th>Duration</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="svc">Knotless braids, medium</td><td class="dur">4–5 hrs</td><td class="price">from €120</td></tr>
+          <tr><td class="svc">Box braids, jumbo</td><td class="dur">3 hrs</td><td class="price">from €90</td></tr>
+          <tr><td class="svc">Boho curly braids</td><td class="dur">4–5 hrs</td><td class="price">from €130</td></tr>
+          <tr><td class="svc">Cornrows, feed-in (2–6 rows)</td><td class="dur">1.5 hrs</td><td class="price">from €50</td></tr>
+          <tr><td class="svc">Silk press &amp; trim</td><td class="dur">1.5 hrs</td><td class="price">from €60</td></tr>
+          <tr><td class="svc">Kids braids, under 12</td><td class="dur">1.5 hrs</td><td class="price">from €40</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="price-note">Final price depends on hair length and density and is confirmed on the prep call.</p>
+  </div>
+</section>
+
+<section id="book" class="book">
+  <div class="wrap book-grid">
+    <div data-reveal>
+      <div class="section-head">
+        <span class="eyebrow">Book a slot</span>
+        <h2>Tell us what you're after</h2>
+        <p>Fill in the form — it opens your email app with everything pre-filled, ready to send us.</p>
+      </div>
+      <div class="book-info">
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+          <div><h4>Studio location</h4><p>Athis-Mons, Île-de-France · exact address sent after booking</p></div>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+          <div><h4>Studio hours</h4><p>Tuesday–Saturday, 9:30am–7pm</p></div>
+        </div>
+        <div class="info-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+          <div><h4>Response time</h4><p>Within one business day, by email or phone</p></div>
+        </div>
+      </div>
+    </div>
+
+    <form class="book-form" id="bookForm">
+      <div class="field-row">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" placeholder="06 12 34 56 78" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="style">Style you'd like</label>
+        <select id="style" name="style">
+          <option>Knotless Braids</option>
+          <option>Box Braids</option>
+          <option>Boho Curly Braids</option>
+          <option>Cornrow Updo</option>
+          <option>Silk Press &amp; Trim</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="date">Preferred date</label>
+        <input id="date" name="date" type="date">
+      </div>
+      <div class="field">
+        <label for="notes">Anything we should know</label>
+        <textarea id="notes" name="notes" rows="3" placeholder="Hair length, texture, extensions you're bringing…"></textarea>
+      </div>
+      <button class="btn" type="submit">Request appointment</button>
+      <p class="form-note">This opens your email app with a pre-filled message to us — just hit send.</p>
+      <div class="success" id="successMsg" role="status">Your email app should now be open with the request ready to send. If nothing opened, email us directly at <a href="mailto:emeraudeemepro@gmail.com" style="color:inherit; text-decoration:underline;">emeraudeemepro@gmail.com</a>.</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© 2026 Natté Studio</span>
+    <span style="display:flex; gap:20px;">
+      <a href="#top">Back to top</a>
+      <a href="#book">Book a slot</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+  var BOOKING_EMAIL = "emeraudeemepro@gmail.com";
+
+  document.getElementById('bookForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('name').value.trim();
+    var phone = document.getElementById('phone').value.trim();
+    var style = document.getElementById('style').value;
+    var date = document.getElementById('date').value;
+    var notes = document.getElementById('notes').value.trim();
+
+    var subject = "Booking request — " + style + (name ? " for " + name : "");
+    var bodyLines = [
+      "Name: " + name,
+      "Phone: " + phone,
+      "Style requested: " + style,
+      "Preferred date: " + (date || "Not specified"),
+      "",
+      "Notes:",
+      notes || "(none)"
+    ];
+    var mailto = "mailto:" + BOOKING_EMAIL
+      + "?subject=" + encodeURIComponent(subject)
+      + "&body=" + encodeURIComponent(bodyLines.join("\n"));
+
+    window.location.href = mailto;
+    document.getElementById('successMsg').classList.add('show');
+  });
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.15});
+    document.querySelectorAll('[data-reveal]').forEach(function(el){ obs.observe(el); });
+  } else {
+    document.querySelectorAll('[data-reveal]').forEach(function(el){ el.classList.add('in'); });
+  }
+</script>
+</body>
+</html>
