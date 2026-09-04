@@ -276,13 +276,59 @@
     display:grid;
     gap:12px;
   }
-  .style-card .style-photo{
+  .style-carousel{
+    position:relative;
+    margin-bottom:4px;
+  }
+  .style-carousel-track{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    gap:0;
+    border-radius:12px;
+    scrollbar-width:none;
+  }
+  .style-carousel-track::-webkit-scrollbar{display:none;}
+  .style-carousel-track img{
+    flex:0 0 100%;
     width:100%;
     aspect-ratio:4/3;
     object-fit:cover;
-    border-radius:12px;
-    margin-bottom:4px;
+    scroll-snap-align:start;
   }
+  .carousel-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    border:none;
+    background:rgba(20,12,16,0.55);
+    color:#fff;
+    font-size:1rem;
+    line-height:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+  }
+  .carousel-btn:hover{background:rgba(20,12,16,0.8);}
+  .carousel-btn.prev{left:8px;}
+  .carousel-btn.next{right:8px;}
+  .carousel-dots{
+    display:flex;
+    justify-content:center;
+    gap:5px;
+    margin-top:8px;
+  }
+  .carousel-dots span{
+    width:5px; height:5px;
+    border-radius:50%;
+    background:var(--surface-line);
+  }
+  .carousel-dots span.active{background:var(--accent);}
   .style-card h3{font-size:1.15rem; font-weight:600; margin:0;}
   .style-card p{margin:0; color:var(--ink-soft); font-size:0.94rem;}
   .style-card .from{
@@ -533,7 +579,16 @@
     <div class="styles-grid">
 
       <div class="style-card" data-reveal>
-        <img class="style-photo" src="https://images.unsplash.com/photo-1770392170488-cd9c8b9a20b5?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Close-up of knotless braids with a natural root" loading="lazy">
+        <div class="style-carousel">
+          <div class="style-carousel-track">
+            <img src="https://images.unsplash.com/photo-1770392170488-cd9c8b9a20b5?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Close-up of knotless braids with a natural root" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1663851071150-b6617bbee927?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Long knotless braid extensions" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1572954889228-2b12a55144d1?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Structured knotless braids styling" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1472747624745-ce92d32d3c24?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Neat single braid detail" loading="lazy">
+          </div>
+          <button class="carousel-btn prev" type="button" aria-label="Previous photo">‹</button>
+          <button class="carousel-btn next" type="button" aria-label="Next photo">›</button>
+        </div>
         <h3>Knotless Braids</h3>
         <p>Feed-in technique for a light, natural root — our most requested install for everyday wear.</p>
         <span class="from">from €120</span>
@@ -541,7 +596,16 @@
       </div>
 
       <div class="style-card" data-reveal>
-        <img class="style-photo" src="https://images.unsplash.com/photo-1648010035195-6b0a56e14667?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Woman with long box braids" loading="lazy">
+        <div class="style-carousel">
+          <div class="style-carousel-track">
+            <img src="https://images.unsplash.com/photo-1648010035195-6b0a56e14667?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Woman with long box braids" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1614173968962-0e61c5ed196f?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Box braids portrait" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1634734162663-6ff483efd839?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Woman dancing with box braids" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1530021217077-d6060dadeacc?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Box braids styling detail" loading="lazy">
+          </div>
+          <button class="carousel-btn prev" type="button" aria-label="Previous photo">‹</button>
+          <button class="carousel-btn next" type="button" aria-label="Next photo">›</button>
+        </div>
         <h3>Box Braids</h3>
         <p>Jumbo or medium parting, classic tension and finish — built to hold four to six weeks.</p>
         <span class="from">from €90</span>
@@ -549,7 +613,15 @@
       </div>
 
       <div class="style-card" data-reveal>
-        <img class="style-photo" src="https://images.unsplash.com/photo-1665923148259-3340e61d3ff2?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Voluminous braid with curly, textured ends" loading="lazy">
+        <div class="style-carousel">
+          <div class="style-carousel-track">
+            <img src="https://images.unsplash.com/photo-1665923148259-3340e61d3ff2?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Voluminous braid with curly, textured ends" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1572955304332-bf714bd49add?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Braids with decorative beads" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1664293282001-0363011a3cc9?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Natural curls, boho texture" loading="lazy">
+          </div>
+          <button class="carousel-btn prev" type="button" aria-label="Previous photo">‹</button>
+          <button class="carousel-btn next" type="button" aria-label="Next photo">›</button>
+        </div>
         <h3>Boho Curly Braids</h3>
         <p>Braided base with a loose curled crown for a softer, undone finish.</p>
         <span class="from">from €130</span>
@@ -557,7 +629,16 @@
       </div>
 
       <div class="style-card" data-reveal>
-        <img class="style-photo" src="https://images.unsplash.com/photo-1673470907547-1c0c6a996095?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Woman with sculpted cornrows" loading="lazy">
+        <div class="style-carousel">
+          <div class="style-carousel-track">
+            <img src="https://images.unsplash.com/photo-1673470907547-1c0c6a996095?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Woman with sculpted cornrows" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1481385694031-f2b14f8621d5?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Cornrows plaited close to the scalp" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1718931202052-2996aac5ed85?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Cornrow styling detail" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1698657056942-ea2e3dbd3ebe?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Braided cornrow updo" loading="lazy">
+          </div>
+          <button class="carousel-btn prev" type="button" aria-label="Previous photo">‹</button>
+          <button class="carousel-btn next" type="button" aria-label="Next photo">›</button>
+        </div>
         <h3>Cornrow Updo</h3>
         <p>Sculpted rows swept into a finished updo — sharp for events, gentle on edges.</p>
         <span class="from">from €70</span>
@@ -675,6 +756,18 @@
     link.addEventListener('click', function(){
       navLinks.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.querySelectorAll('.style-carousel').forEach(function (car) {
+    var track = car.querySelector('.style-carousel-track');
+    var prevBtn = car.querySelector('.prev');
+    var nextBtn = car.querySelector('.next');
+    prevBtn.addEventListener('click', function () {
+      track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', function () {
+      track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
     });
   });
 
