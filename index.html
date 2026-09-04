@@ -272,13 +272,16 @@
     background:var(--surface);
     border:1px solid var(--surface-line);
     border-radius:18px;
-    padding:28px 24px;
+    padding:20px 20px 24px;
     display:grid;
-    gap:14px;
+    gap:12px;
   }
-  .style-card .icon{
-    width:52px;height:52px;
-    color:var(--accent);
+  .style-card .style-photo{
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    border-radius:12px;
+    margin-bottom:4px;
   }
   .style-card h3{font-size:1.15rem; font-weight:600; margin:0;}
   .style-card p{margin:0; color:var(--ink-soft); font-size:0.94rem;}
@@ -286,8 +289,17 @@
     font-family:"Fraunces", serif;
     font-size:0.95rem;
     color:var(--accent-strong);
-    margin-top:4px;
+    margin-top:2px;
   }
+  .style-card .style-pick{
+    justify-self:start;
+    margin-top:4px;
+    padding:9px 18px;
+    font-size:0.84rem;
+    color:var(--ink);
+    border-color:color-mix(in srgb, var(--ink) 25%, transparent);
+  }
+  .style-card .style-pick:hover{background:color-mix(in srgb, var(--ink) 8%, transparent);}
 
   .process{
     background:var(--surface);
@@ -413,6 +425,29 @@
     color:var(--plum-soft);
   }
   .book-cal-fallback a{color:var(--accent-on-plum); font-weight:600;}
+  .style-selected{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 10px;
+    padding:10px 14px;
+    border-radius:10px;
+    background:color-mix(in srgb, var(--accent-on-plum) 16%, transparent);
+    border:1px solid color-mix(in srgb, var(--accent-on-plum) 36%, transparent);
+    font-size:0.86rem;
+  }
+  .style-selected strong{color:var(--accent-on-plum);}
+  .style-selected #styleClear{
+    margin-left:auto;
+    background:none;
+    border:none;
+    color:var(--plum-soft);
+    text-decoration:underline;
+    cursor:pointer;
+    font:inherit;
+    font-size:0.8rem;
+    padding:0;
+  }
 
   footer{
     padding:32px 0 40px;
@@ -498,53 +533,35 @@
     <div class="styles-grid">
 
       <div class="style-card" data-reveal>
-        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path d="M12 6 C12 16, 24 16, 24 24 C24 32, 12 32, 12 42"/>
-          <path d="M24 6 C24 16, 36 16, 36 24 C36 32, 24 32, 24 42"/>
-          <circle cx="12" cy="6" r="1.6" fill="currentColor"/>
-          <circle cx="24" cy="6" r="1.6" fill="currentColor"/>
-          <circle cx="36" cy="6" r="1.6" fill="currentColor"/>
-        </svg>
+        <img class="style-photo" src="https://images.unsplash.com/photo-1770392170488-cd9c8b9a20b5?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Close-up of knotless braids with a natural root" loading="lazy">
         <h3>Knotless Braids</h3>
         <p>Feed-in technique for a light, natural root — our most requested install for everyday wear.</p>
         <span class="from">from €120</span>
+        <button class="btn ghost style-pick" type="button" data-style="Knotless Braids">Book this style</button>
       </div>
 
       <div class="style-card" data-reveal>
-        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="8" y="8" width="8" height="8"/>
-          <rect x="20" y="8" width="8" height="8"/>
-          <rect x="32" y="8" width="8" height="8"/>
-          <rect x="8" y="20" width="8" height="8"/>
-          <rect x="20" y="20" width="8" height="8"/>
-          <rect x="32" y="20" width="8" height="8"/>
-          <path d="M10 32 L38 40" stroke-dasharray="0 6.4" />
-        </svg>
+        <img class="style-photo" src="https://images.unsplash.com/photo-1648010035195-6b0a56e14667?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Woman with long box braids" loading="lazy">
         <h3>Box Braids</h3>
         <p>Jumbo or medium parting, classic tension and finish — built to hold four to six weeks.</p>
         <span class="from">from €90</span>
+        <button class="btn ghost style-pick" type="button" data-style="Box Braids">Book this style</button>
       </div>
 
       <div class="style-card" data-reveal>
-        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path d="M24 4 C34 4 40 12 36 20 C33 26 24 26 24 32 C24 38 32 38 34 44"/>
-          <path d="M24 4 C14 4 8 12 12 20 C15 26 24 26 24 32"/>
-        </svg>
+        <img class="style-photo" src="https://images.unsplash.com/photo-1665923148259-3340e61d3ff2?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Voluminous braid with curly, textured ends" loading="lazy">
         <h3>Boho Curly Braids</h3>
         <p>Braided base with a loose curled crown for a softer, undone finish.</p>
         <span class="from">from €130</span>
+        <button class="btn ghost style-pick" type="button" data-style="Boho Curly Braids">Book this style</button>
       </div>
 
       <div class="style-card" data-reveal>
-        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path d="M6 30 C6 16, 42 16, 42 30"/>
-          <path d="M12 30 C12 20, 36 20, 36 30"/>
-          <path d="M18 30 C18 24, 30 24, 30 30"/>
-          <path d="M24 30 L24 42"/>
-        </svg>
+        <img class="style-photo" src="https://images.unsplash.com/photo-1673470907547-1c0c6a996095?fm=jpg&amp;q=80&amp;w=640&amp;auto=format&amp;fit=crop" alt="Woman with sculpted cornrows" loading="lazy">
         <h3>Cornrow Updo</h3>
         <p>Sculpted rows swept into a finished updo — sharp for events, gentle on edges.</p>
         <span class="from">from €70</span>
+        <button class="btn ghost style-pick" type="button" data-style="Cornrow Updo">Book this style</button>
       </div>
 
     </div>
@@ -628,6 +645,7 @@
     </div>
 
     <div class="book-cal" data-reveal>
+      <p class="style-selected" id="styleSelected" hidden>Style selected: <strong id="styleSelectedName"></strong> <button type="button" id="styleClear">clear</button></p>
       <div id="calBooking" class="book-cal-frame"></div>
       <p class="book-cal-fallback">Calendar not loading? Book directly at
         <a id="calFallbackLink" href="https://cal.com/natte-studio" target="_blank" rel="noopener">cal.com/natte-studio</a>.
@@ -697,18 +715,46 @@
   })(window, "https://app.cal.com/embed/embed.js", "init");
 
   Cal("init", { origin: "https://cal.com" });
-  Cal("inline", {
-    elementOrSelector: "#calBooking",
-    calLink: CAL_LINK,
-    config: {
-      theme: "dark",
-      layout: "month_view"
-    }
-  });
   Cal("ui", {
     theme: "dark",
     styles: { branding: { brandColor: "#dba750" } },
     hideEventTypeDetails: false
+  });
+
+  var calBookingEl = document.getElementById('calBooking');
+  var styleBadge = document.getElementById('styleSelected');
+  var styleBadgeName = document.getElementById('styleSelectedName');
+
+  function loadCalWidget(styleName) {
+    var link = CAL_LINK;
+    if (styleName) {
+      link += "?notes=" + encodeURIComponent("Style souhaité : " + styleName);
+    }
+    calBookingEl.innerHTML = "";
+    Cal("inline", {
+      elementOrSelector: "#calBooking",
+      calLink: link,
+      config: { theme: "dark", layout: "month_view" }
+    });
+    if (styleName) {
+      styleBadgeName.textContent = styleName;
+      styleBadge.hidden = false;
+    } else {
+      styleBadge.hidden = true;
+    }
+  }
+
+  loadCalWidget();
+
+  document.querySelectorAll('.style-pick').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      loadCalWidget(btn.getAttribute('data-style'));
+      document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  document.getElementById('styleClear').addEventListener('click', function () {
+    loadCalWidget();
   });
 
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
