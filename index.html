@@ -665,7 +665,9 @@
   // 2. Create an event type (e.g. slug "braids") for appointments.
   // 3. Update CAL_LINK below to "your-username/your-event-slug" and it goes live automatically.
   var CAL_LINK = "rere-ofnh1x/natte-e";
-  document.getElementById('calFallbackLink').href = "https://cal.com/" + CAL_LINK;
+  var calFallback = document.getElementById('calFallbackLink');
+  calFallback.href = "https://cal.com/" + CAL_LINK;
+  calFallback.textContent = "cal.com/" + CAL_LINK;
 
   (function (C, A, L) {
     let p = function (a, ar) { a.q.push(ar); };
